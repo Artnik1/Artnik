@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vesmír podle ARTnika | Vypravěč tajemství</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --space-black: #020205; --nebula-purple: #240046; --vibrant-purple: #9d00ff; --star-white: #ffffff; --text-main: #e0e0e0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--space-black); color: var(--text-main); font-family: 'Exo 2', sans-serif; overflow-x: hidden; min-height: 100vh; }
+        #starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, var(--nebula-purple) 0%, var(--space-black) 100%); overflow: hidden; }
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: move linear infinite; }
+        @keyframes move { from { transform: translateY(0); } to { transform: translateY(-1000px); } }
+        header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .hero-title { font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem, 8vw, 5rem); color: var(--star-white); text-transform: uppercase; letter-spacing: 15px; text-shadow: 0 0 20px var(--vibrant-purple); margin-bottom: 20px; }
+        .hero-tagline { font-size: 1.5rem; font-weight: 200; letter-spacing: 5px; color: var(--vibrant-purple); text-transform: uppercase; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 100px 20px; }
+        .story-intro { font-size: 1.4rem; line-height: 1.8; text-align: center; margin-bottom: 80px; font-style: italic; color: #b0b0b0; }
+        .archive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .theory-card { background: rgba(15, 15, 30, 0.7); border: 1px solid rgba(157, 0, 255, 0.3); padding: 40px; position: relative; transition: 0.5s; cursor: pointer; backdrop-filter: blur(10px); }
+        .theory-card:hover { border-color: var(--vibrant-purple); box-shadow: 0 0 30px rgba(157, 0, 255, 0.2); transform: scale(1.02); }
+        .theory-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; margin-bottom: 15px; color: var(--star-white); }
+        .read-more { color: var(--vibrant-purple); text-decoration: none; font-family: 'Orbitron', sans-serif; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
+        footer { padding: 100px 20px; text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.2); }
+        @media (max-width: 768px) { .archive-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div id="starfield"></div>
+    <header>
+        <h1 class="hero-title">ARTnik</h1>
+        <p class="hero-tagline">Vypravěč nekonečna</p>
+    </header>
+    <div class="container">
+        <p class="story-intro">"Vesmír není jen prázdnota plná hvězd. Je to kronika napsaná světlem..."</p>
+        <div class="archive-grid">
+            <div class="theory-card" onclick="window.location.href='kardasova_skala.html'">
+                <h3>Kardašovova Škála</h3>
+                <p>Teorie civilizačního vývoje založená na spotřebě energie.</p>
+                <a href="kardasova_skala.html" class="read-more">Otevřít svazek →</a>
+            </div>
+            <div class="theory-card" style="opacity: 0.5;">
+                <h3>Fermiho Paradox</h3>
+                <p>Připravuje se k vypuštění na oběžnou dráhu...</p>
+                <span class="read-more">Zatím uzamčeno</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3;
+            star.style.width = size + 'px'; star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%'; star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = (Math.random() * 50 + 50) + 's';
+            starfield.appendChild(star);
+        }
+    </script>
+</body>
+</html>
